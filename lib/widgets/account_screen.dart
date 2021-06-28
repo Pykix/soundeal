@@ -1,20 +1,18 @@
-import 'package:flutter/material.dart';
-import './category_item.dart';
-import '../fake_categories.dart';
-import 'account_screen.dart';
+import "package:flutter/material.dart";
+import 'package:soundeal/widgets/categories_screen.dart';
 
-class CategoriesScreen extends StatefulWidget {
+class AccountScreen extends StatefulWidget {
   @override
-  _CategoriesScreenState createState() => _CategoriesScreenState();
+  _AccountScreenState createState() => _AccountScreenState();
 }
 
-class _CategoriesScreenState extends State<CategoriesScreen> {
+class _AccountScreenState extends State<AccountScreen> {
   int _selectedIndex = 0;
-
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
+
     switch (index) {
       case 0:
         Navigator.pushAndRemoveUntil(
@@ -37,23 +35,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, Object>;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Soundeal"),
+        title: Text("Account page"),
       ),
-      body: GridView(
-        padding: EdgeInsets.all(10),
-        children: fakeCategories
-            .map(
-              (e) => CategoryItem(e.id, e.type, e.picture),
-            )
-            .toList(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          // childAspectRatio: 3 / 2,
-          mainAxisSpacing: 5.0,
-          crossAxisSpacing: 5.0,
-        ),
+      body: Center(
+        child: Text('Votre page de compte'),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
