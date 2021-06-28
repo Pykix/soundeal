@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:soundeal/widgets/bottom_navigation.dart';
 import 'package:soundeal/widgets/categories_screen.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -9,6 +10,9 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
+    if (_selectedIndex != index) {
+      return;
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -45,20 +49,7 @@ class _AccountScreenState extends State<AccountScreen> {
       body: Center(
         child: Text('Votre page de compte'),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Compte',
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomBar(context, _onItemTapped),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {},
