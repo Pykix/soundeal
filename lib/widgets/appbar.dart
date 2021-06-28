@@ -10,5 +10,6 @@ Widget appbar(BuildContext context) {
         bottom: Radius.circular(25),
       ),
     ),
+    actions: [IconButton(onPressed: () {}, icon: Icon(Icons.shopping_cart))],
   );
 }
