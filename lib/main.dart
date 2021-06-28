@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'categories_screen.dart';
+import './articles_screen.dart';
+import './categories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,13 +22,16 @@ class MyApp extends StatelessWidget {
                 color: Color.fromRGBO(20, 51, 51, 1),
               ),
               headline6: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.white),
             ),
       ),
       title: "Soundeal",
       home: CategoriesScreen(),
+      routes: {
+        '/articles': (context) => ArticlesScreen(),
+      },
     );
   }
 }

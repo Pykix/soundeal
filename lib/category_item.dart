@@ -13,7 +13,7 @@ class CategoryItem extends StatelessWidget {
   );
 
   void selectCategory(BuildContext context) {
-    Navigator.of(context).pushNamed('/categories', arguments: {
+    Navigator.of(context).pushNamed('/articles', arguments: {
       'id': id,
       'title': title,
       'picture': picture,
@@ -27,19 +27,18 @@ class CategoryItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
-        padding: const EdgeInsets.all(15),
-        child: Stack(
-          children: <Widget>[
-            Image(
-              image: (picture.image),
-            ),
-            Text(
-              title,
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline6,
+          ),
         ),
         decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: picture.image,
+          ),
           borderRadius: BorderRadius.circular(15),
         ),
       ),

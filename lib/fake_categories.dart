@@ -33,4 +33,24 @@ var fakeCategories = [
     type: 'Piano',
     picture: Image.asset("assets/images/piano.jpg"),
   ),
+  Category(
+    id: 7,
+    type: 'Micro',
+    picture: Image.asset("assets/images/micro.jpg"),
+  ),
+  Category(
+    id: 8,
+    type: 'Platine',
+    picture: Image.asset("assets/images/turntable.jpg"),
+  ),
+  Category(
+    id: 9,
+    type: 'Electrique',
+    picture: Image.asset("assets/images/guitare-elec.jpg"),
+  ),
+  Category(
+    id: 10,
+    type: 'Saxo',
+    picture: Image.asset("assets/images/saxo.jpg"),
+  ),
 ];
