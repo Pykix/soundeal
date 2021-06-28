@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soundeal/category_item.dart';
-import './fake_categories.dart';
+import './category_item.dart';
+import '../fake_categories.dart';
 
 class CategoriesScreen extends StatelessWidget {
   @override
