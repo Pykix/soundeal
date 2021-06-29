@@ -14,9 +14,17 @@ class ArticlesList extends StatelessWidget {
             Navigator.pushNamed(
               context,
               '/detail',
-              arguments: {
-                'detailTitle': articles[index].title,
-              },
+              arguments: Articles(
+                articles[index].id,
+                articles[index].title,
+                articles[index].desc,
+                articles[index].state,
+                articles[index].price,
+                articles[index].age,
+                articles[index].type,
+                articles[index].user,
+                articles[index].picture,
+              ),
             );
           },
           child: Card(
