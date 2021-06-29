@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import './category_item.dart';
-import '../fake_categories.dart';
-import 'account_screen.dart';
+import 'package:soundeal/widgets/bottom_navigation.dart';
+import '../appbar.dart';
+import '../categories/category_item.dart';
+import '../../fake_categories.dart';
+import '../account_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -12,9 +14,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   int _selectedIndex = 0;
 
   void _onItemTapped(int index) {
+    if (_selectedIndex == index) {
+      return;
+    }
     setState(() {
       _selectedIndex = index;
     });
+
     switch (index) {
       case 0:
         Navigator.pushAndRemoveUntil(
@@ -38,9 +44,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Soundeal"),
-      ),
+      appBar: appbar(context),
       body: GridView(
         padding: EdgeInsets.all(10),
         children: fakeCategories
@@ -55,20 +59,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           crossAxisSpacing: 5.0,
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category),
-            label: 'Categories',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
-            label: 'Compte',
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottomBar(context, _onItemTapped),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {},

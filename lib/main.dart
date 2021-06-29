@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/widgets/account_screen.dart';
-import './widgets/articles_screen.dart';
-import './widgets/categories_screen.dart';
+import 'package:soundeal/widgets/articles/article_detail.dart';
+import 'widgets/articles/articles_screen.dart';
+import 'widgets/categories/categories_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
-        canvasColor: Color.fromRGBO(255, 254, 221, 1),
+        canvasColor: Color.fromRGBO(255, 254, 255, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyText1: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
@@ -34,26 +35,8 @@ class MyApp extends StatelessWidget {
         '/articles': (context) => ArticlesScreen(),
         '/compte': (context) => AccountScreen(),
         '/categories': (context) => CategoriesScreen(),
+        '/detail': (context) => ArticleDetail(),
       },
-    );
-  }
-}
-
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Soundeal'),
-      ),
-      body: Center(
-        child: Text('Welcome!'),
-      ),
     );
   }
 }

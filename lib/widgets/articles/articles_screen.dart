@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'articles_list.dart';
 
 class ArticlesScreen extends StatelessWidget {
   @override
@@ -10,9 +11,7 @@ class ArticlesScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(titleArg),
       ),
-      body: Center(
-        child: Text('Liste des annonces de ${routeArgs['title']}s'),
-      ),
+      body: ArticlesList(),
     );
   }
 }
