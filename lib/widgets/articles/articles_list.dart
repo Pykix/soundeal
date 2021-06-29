@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 
-import '../fake_articles.dart';
+import '../../fake_articles.dart';
 
 class ArticlesList extends StatelessWidget {
   @override

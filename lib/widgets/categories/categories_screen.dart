@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/widgets/bottom_navigation.dart';
-import './appbar.dart';
-import './category_item.dart';
-import '../fake_categories.dart';
-import 'account_screen.dart';
+import '../appbar.dart';
+import '../categories/category_item.dart';
+import '../../fake_categories.dart';
+import '../account_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
