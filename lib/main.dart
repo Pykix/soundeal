@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/widgets/account_screen.dart';
+import 'package:soundeal/widgets/article_detail.dart';
 import './widgets/articles_screen.dart';
 import './widgets/categories_screen.dart';
 
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/articles': (context) => ArticlesScreen(),
         '/compte': (context) => AccountScreen(),
         '/categories': (context) => CategoriesScreen(),
+        '/detail': (context) => ArticleDetail(),
       },
     );
   }

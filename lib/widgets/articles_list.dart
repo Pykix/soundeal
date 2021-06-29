@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundeal/models/articles.dart';
 
 import '../fake_articles.dart';
 
@@ -9,7 +10,14 @@ class ArticlesList extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            print("clicked on $index");
+            print(articles[index]);
+            Navigator.pushNamed(
+              context,
+              '/detail',
+              arguments: {
+                'detailTitle': articles[index].title,
+              },
+            );
           },
           child: Card(
             elevation: 3,
