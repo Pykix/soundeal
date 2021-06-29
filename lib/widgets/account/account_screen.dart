@@ -39,9 +39,6 @@ class _AccountScreenState extends State<AccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final routeArgs =
-        ModalRoute.of(context).settings.arguments as Map<String, Object>;
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Mon compte"),
@@ -53,7 +50,9 @@ class _AccountScreenState extends State<AccountScreen> {
           ListTile(
             title: Text("Mes annonces"),
             trailing: Icon(Icons.chevron_right),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, '/myoffers');
+            },
           ),
           ListTile(
             title: Text("Mes Messages"),

@@ -5,7 +5,7 @@ import './models/articles.dart';
 final List<Articles> articles = [
   Articles(
     1,
-    "Guitare",
+    "Guitare 1",
     "This is an awesome article",
     "Good",
     5482,
@@ -16,7 +16,7 @@ final List<Articles> articles = [
   ),
   Articles(
     2,
-    "Guitare",
+    "Guitare 2",
     "This is an awesome article",
     "Good",
     5482,
@@ -27,7 +27,7 @@ final List<Articles> articles = [
   ),
   Articles(
     3,
-    "Guitare",
+    "Guitare 3",
     "This is an awesome article",
     "Good",
     5482,
@@ -38,7 +38,7 @@ final List<Articles> articles = [
   ),
   Articles(
     4,
-    "Guitare",
+    "Guitare 4",
     "This is an awesome article",
     "Good",
     5482,
@@ -49,7 +49,7 @@ final List<Articles> articles = [
   ),
   Articles(
     5,
-    "Guitare",
+    "Guitare 5",
     "This is an awesome article",
     "Good",
     5482,
@@ -60,7 +60,7 @@ final List<Articles> articles = [
   ),
   Articles(
     6,
-    "Guitare",
+    "Guitare 6",
     "This is an awesome article",
     "Good",
     5482,
@@ -71,7 +71,7 @@ final List<Articles> articles = [
   ),
   Articles(
     7,
-    "Guitare",
+    "Guitare 7",
     "This is an awesome article",
     "Good",
     5482,
@@ -82,7 +82,7 @@ final List<Articles> articles = [
   ),
   Articles(
     8,
-    "Guitare",
+    "Guitare 8",
     "This is an awesome article",
     "Good",
     5482,
@@ -93,7 +93,7 @@ final List<Articles> articles = [
   ),
   Articles(
     9,
-    "Guitare",
+    "Guitare 9",
     "This is an awesome article",
     "Good",
     5482,
@@ -104,7 +104,7 @@ final List<Articles> articles = [
   ),
   Articles(
     10,
-    "Guitare",
+    "Guitare 10",
     "This is an awesome article",
     "Good",
     5482,
