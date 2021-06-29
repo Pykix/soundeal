@@ -1,6 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:soundeal/widgets/bottom_navigation.dart';
-import 'package:soundeal/widgets/categories_screen.dart';
+import 'package:soundeal/widgets/categories/categories_screen.dart';
 
 class AccountScreen extends StatefulWidget {
   @override
