@@ -1,12 +1,15 @@
+import 'package:flutter/material.dart';
+
 class Articles {
-  int id;
-  String title;
-  String desc;
-  String state;
-  int price;
-  int age;
-  String type;
-  String user;
+  final int id;
+  final String title;
+  final String desc;
+  final String state;
+  final int price;
+  final int age;
+  final String type;
+  final String user;
+  final Image picture;
 
   Articles(
     this.id,
@@ -17,5 +20,6 @@ class Articles {
     this.age,
     this.type,
     this.user,
+    this.picture,
   );
 }

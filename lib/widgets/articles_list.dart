@@ -7,26 +7,34 @@ class ArticlesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return Card(
-          elevation: 5,
-          margin: EdgeInsets.symmetric(
-            horizontal: 5,
-            vertical: 8,
-          ),
-          child: ListTile(
-            leading: CircleAvatar(
-              radius: 30,
-              child: Padding(
-                padding: const EdgeInsets.all(6.0),
-                child: FittedBox(
-                  child: Text('${articles[index].price}€'),
+        return GestureDetector(
+          onTap: () {
+            print("clicked on $index");
+          },
+          child: Card(
+            elevation: 3,
+            margin: EdgeInsets.symmetric(
+              horizontal: 3,
+              vertical: 8,
+            ),
+            child: ListTile(
+              leading: ClipRRect(
+                child: Image.network(
+                  'https://cdn.pixabay.com/photo/2021/06/17/05/14/city-6342765_960_720.jpg',
+                  fit: BoxFit.cover,
+                  width: 100.0,
+                  height: 100.0,
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(15),
                 ),
               ),
+              title: Text(
+                articles[index].title,
+              ),
+              subtitle: Text(articles[index].desc),
+              trailing: Text("${articles[index].price.toString()}€"),
             ),
-            title: Text(
-              articles[index].title,
-            ),
-            subtitle: Text(articles[index].desc),
           ),
         );
       },

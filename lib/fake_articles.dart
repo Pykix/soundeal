@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 import './models/articles.dart';
 
 final List<Articles> articles = [
@@ -10,6 +12,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     2,
@@ -20,6 +23,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     3,
@@ -30,6 +34,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     4,
@@ -40,6 +45,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     5,
@@ -50,6 +56,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     6,
@@ -60,6 +67,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     7,
@@ -70,6 +78,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     8,
@@ -80,6 +89,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     9,
@@ -90,6 +100,7 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
   Articles(
     10,
@@ -100,5 +111,6 @@ final List<Articles> articles = [
     2,
     "instrument",
     "Ludovic",
+    Image.asset('assets/images/saxo.jpg'),
   ),
 ];
