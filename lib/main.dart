@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soundeal/widgets/account_screen.dart';
+import 'package:soundeal/widgets/account/account_screen.dart';
 import 'package:soundeal/widgets/articles/article_detail.dart';
 import 'widgets/articles/articles_screen.dart';
 import 'widgets/categories/categories_screen.dart';
@@ -22,6 +22,10 @@ class MyApp extends StatelessWidget {
               ),
               bodyText2: TextStyle(
                 color: Color.fromRGBO(20, 51, 51, 1),
+              ),
+              headline3: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
               ),
               headline6: TextStyle(
                   fontSize: 25,
