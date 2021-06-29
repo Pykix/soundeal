@@ -10,7 +10,6 @@ class ArticlesList extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            print(articles[index]);
             Navigator.pushNamed(
               context,
               '/detail',

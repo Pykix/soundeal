@@ -44,11 +44,34 @@ class _AccountScreenState extends State<AccountScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Account page"),
+        title: Text("Mon compte"),
       ),
       body: Center(
-        child: Text('Votre page de compte'),
-      ),
+          child: ListView(
+        padding: const EdgeInsets.all(8.0),
+        children: [
+          ListTile(
+            title: Text("Mes annonces"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text("Mes Messages"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text("Mes Infos"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
+          ),
+          ListTile(
+            title: Text("Supprimer mon compte"),
+            trailing: Icon(Icons.chevron_right),
+            onTap: () {},
+          ),
+        ],
+      )),
       bottomNavigationBar: bottomBar(context, _onItemTapped),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
