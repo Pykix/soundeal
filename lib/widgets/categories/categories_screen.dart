@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soundeal/widgets/articles/articles_add.dart';
 import 'package:soundeal/widgets/bottom_navigation.dart';
 import '../appbar.dart';
 import '../categories/category_item.dart';
@@ -41,6 +42,20 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     }
   }
 
+  void _startAddNewOffer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: AddArticle(),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +77,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       bottomNavigationBar: bottomBar(context, _onItemTapped),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () => _startAddNewOffer(context),
       ),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
