@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 import 'package:soundeal/widgets/appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ArticleDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final article = ModalRoute.of(context).settings.arguments as Articles;
+    final String mail =
+        "mailto:nation.addict@gmail.com?subject=${article.title}&body=Bonjour, votre annonce m'interresse est-elle toujours dispo?";
     return Scaffold(
       appBar: appbar(context),
       body: Column(
@@ -66,7 +69,7 @@ class ArticleDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => launch(mail),
                   child: Icon(Icons.email, color: Colors.white),
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
@@ -76,7 +79,7 @@ class ArticleDetail extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => launch("tel:+33101010101"),
                   child: Icon(Icons.phone, color: Colors.white),
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
@@ -86,7 +89,7 @@ class ArticleDetail extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => launch("sms:+33101010101"),
                   child: Icon(Icons.message, color: Colors.white),
                   style: ElevatedButton.styleFrom(
                     shape: CircleBorder(),
