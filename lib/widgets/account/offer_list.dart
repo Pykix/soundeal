@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 
-import '../../fake_articles.dart';
-
 class OfferList extends StatelessWidget {
   final List<Articles> articles;
   final Function deleteArticle;
