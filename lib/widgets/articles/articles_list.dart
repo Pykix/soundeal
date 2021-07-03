@@ -1,59 +1,48 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
-
+import 'package:http/http.dart' as http;
 import '../../fake_articles.dart';
 
-class ArticlesList extends StatelessWidget {
+Future<Articles> fetchArticles() async {
+  final response = await http.get(Uri.parse('http://10.0.2.2:8000/item/29'));
+
+  if (response.statusCode == 200) {
+    return Articles.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load articles');
+  }
+}
+
+class ArticlesList extends StatefulWidget {
+  @override
+  _ArticlesListState createState() => _ArticlesListState();
+}
+
+class _ArticlesListState extends State<ArticlesList> {
+  Future<Articles> articles;
+
+  @override
+  void initState() {
+    super.initState();
+    articles = fetchArticles();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            Navigator.pushNamed(
-              context,
-              '/detail',
-              arguments: Articles(
-                articles[index].id,
-                articles[index].title,
-                articles[index].desc,
-                articles[index].state,
-                articles[index].price,
-                articles[index].age,
-                articles[index].type,
-                articles[index].user,
-                articles[index].picture,
-              ),
-            );
-          },
-          child: Card(
-            elevation: 3,
-            margin: EdgeInsets.symmetric(
-              horizontal: 3,
-              vertical: 8,
-            ),
-            child: ListTile(
-              leading: ClipRRect(
-                child: Image.network(
-                  'https://cdn.pixabay.com/photo/2021/06/17/05/14/city-6342765_960_720.jpg',
-                  fit: BoxFit.cover,
-                  width: 100.0,
-                  height: 100.0,
-                ),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(15),
-                ),
-              ),
-              title: Text(
-                articles[index].title,
-              ),
-              subtitle: Text(articles[index].desc),
-              trailing: Text("${articles[index].price.toString()}€"),
-            ),
-          ),
-        );
-      },
-      itemCount: articles.length,
+    return Container(
+      child: FutureBuilder<Articles>(
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Text(snapshot.data.title);
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
+          }
+          return CircularProgressIndicator();
+        },
+        future: articles,
+      ),
     );
   }
 }

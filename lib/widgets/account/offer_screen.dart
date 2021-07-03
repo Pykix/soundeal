@@ -9,11 +9,11 @@ class OfferScreen extends StatefulWidget {
 }
 
 class _OfferScreenState extends State<OfferScreen> {
-  final List<Articles> _allArticles = articles;
+  // final List<Articles> _allArticles = articles;
 
   void _deleteTransaction(int id) {
     setState(() {
-      _allArticles.removeWhere((element) => element.id == id);
+      // _allArticles.removeWhere((element) => element.id == id);
     });
   }
 
@@ -23,7 +23,10 @@ class _OfferScreenState extends State<OfferScreen> {
       appBar: AppBar(
         title: Text("Mes Annonces"),
       ),
-      body: OfferList(_allArticles, _deleteTransaction),
+      body: Center(
+        child: Text('Hello'),
+      ),
+      // body: OfferList(_allArticles, _deleteTransaction),
     );
   }
 }

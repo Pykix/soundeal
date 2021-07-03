@@ -1,0 +1,43 @@
+GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  '/detail',
+                  arguments: Articles(
+                    id: articles[index].id,
+                    title: articles[index].title,
+                    description: articles[index].description,
+                    state: articles[index].state,
+                    price: articles[index].price,
+                    age: articles[index].age,
+                    type: articles[index].type,
+                    user: articles[index].user,
+                  ),
+                );
+              },
+              child: Card(
+                elevation: 3,
+                margin: EdgeInsets.symmetric(
+                  horizontal: 3,
+                  vertical: 8,
+                ),
+                child: ListTile(
+                  leading: ClipRRect(
+                    child: Image.network(
+                      'https://cdn.pixabay.com/photo/2021/06/17/05/14/city-6342765_960_720.jpg',
+                      fit: BoxFit.cover,
+                      width: 100.0,
+                      height: 100.0,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15),
+                    ),
+                  ),
+                  title: Text(
+                    articles[index].title,
+                  ),
+                  subtitle: Text(articles[index].description),
+                  trailing: Text("${articles[index].price.toString()}€"),
+                ),
+              ),
+            );

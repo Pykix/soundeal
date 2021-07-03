@@ -3,23 +3,34 @@ import 'package:flutter/material.dart';
 class Articles {
   final int id;
   final String title;
-  final String desc;
+  final String description;
   final String state;
   final int price;
   final int age;
-  final String type;
-  final String user;
-  final Image picture;
+  final int type;
+  final int user;
 
-  Articles(
+  Articles({
     this.id,
     this.title,
-    this.desc,
+    this.description,
     this.state,
     this.price,
     this.age,
     this.type,
     this.user,
-    this.picture,
-  );
+  });
+
+  factory Articles.fromJson(Map<String, dynamic> json) {
+    return Articles(
+      id: json['id'],
+      title: json['title'],
+      description: json['descritpion'],
+      state: json['state'],
+      price: json['price'],
+      age: json['age'],
+      type: json['type_id'],
+      user: json['user_id'],
+    );
+  }
 }
