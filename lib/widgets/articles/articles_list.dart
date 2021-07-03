@@ -35,6 +35,7 @@ class _ArticlesListState extends State<ArticlesList> {
       child: FutureBuilder<Articles>(
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            print(snapshot.data.description);
             return Text(snapshot.data.title);
           } else if (snapshot.hasError) {
             return Text("${snapshot.error}");

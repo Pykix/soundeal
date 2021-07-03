@@ -25,7 +25,7 @@ class Articles {
     return Articles(
       id: json['id'],
       title: json['title'],
-      description: json['descritpion'],
+      description: json['description'],
       state: json['state'],
       price: json['price'],
       age: json['age'],
