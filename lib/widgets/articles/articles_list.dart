@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 import 'package:http/http.dart' as http;
-import '../../fake_articles.dart';
 
 List<Articles> articlesModelFromJson(String str) =>
     List<Articles>.from(json.decode(str).map((x) => Articles.fromJson(x)));

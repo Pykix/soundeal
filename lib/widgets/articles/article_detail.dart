@@ -59,10 +59,11 @@ class ArticleDetail extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque mi vitae turpis pretium, ut feugiat dui scelerisque. Duis dapibus massa diam. Nunc venenatis lacinia massa, vitae luctus ligula facilisis vitae. Nunc scelerisque consequat urna, in accumsan nisi tempor suscipit. Phasellus elementum sollicitudin scelerisque. Nam et blandit risus, accumsan varius massa. Fusce condimentum id est eu ultricies. Fusce molestie nec sapien et posuere. Vestibulum non justo quis est porttitor tempus. Nunc in nibh a felis scelerisque aliquet.",
+              article.description,
               style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
+          Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
