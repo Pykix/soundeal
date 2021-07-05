@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:soundeal/widgets/account/account_screen.dart';
 import 'package:soundeal/widgets/account/offer_screen.dart';
 import 'package:soundeal/widgets/articles/article_detail.dart';
 import 'widgets/articles/articles_screen.dart';
 import 'widgets/categories/categories_screen.dart';
 
+final storage = FlutterSecureStorage();
 void main() {
   runApp(MyApp());
 }

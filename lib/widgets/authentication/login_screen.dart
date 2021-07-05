@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:soundeal/main.dart';
 import 'package:soundeal/models/user.dart';
 import 'package:http/http.dart' as http;
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 import '../appbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -131,8 +133,11 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       body: {"username": _emailFilter.text, "password": _passwordFilter.text},
     );
-    var convertedDataToJson = jsonDecode(response.body);
-    print(convertedDataToJson);
+    Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
+    var token = convertedDataToJson['access_token'];
+    await UserSecureStorage.setJWT(token);
+    var result = await UserSecureStorage.getJWT();
+    print(result);
     return convertedDataToJson;
   }
 
