@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 import 'package:http/http.dart' as http;
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 
 List<Articles> articlesModelFromJson(String str) =>
     List<Articles>.from(json.decode(str).map((x) => Articles.fromJson(x)));
@@ -26,6 +27,9 @@ class ArticlesList extends StatefulWidget {
 class _ArticlesListState extends State<ArticlesList> {
   Future<List<Articles>> articlesObject;
 
+  final snackbar = SnackBar(
+    content: Text('Vous etes maintenant connecté'),
+  );
   @override
   void initState() {
     super.initState();

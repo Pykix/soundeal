@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 import 'package:soundeal/widgets/bottom_navigation.dart';
 import 'package:soundeal/widgets/categories/categories_screen.dart';
 
@@ -67,7 +68,11 @@ class _AccountScreenState extends State<AccountScreen> {
           ListTile(
             title: Text("Supprimer mon compte"),
             trailing: Icon(Icons.chevron_right),
-            onTap: () {},
+            onTap: () {
+              if (UserSecureStorage.isConnected) {
+                UserSecureStorage.isConnected = false;
+              }
+            },
           ),
         ],
       )),

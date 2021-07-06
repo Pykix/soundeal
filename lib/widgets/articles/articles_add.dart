@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class AddArticle extends StatefulWidget {
   @override
@@ -7,8 +10,6 @@ class AddArticle extends StatefulWidget {
 
 class _AddArticleState extends State<AddArticle> {
   final _titleController = TextEditingController();
-
-  final _stateController = TextEditingController();
 
   final _ageController = TextEditingController();
 
@@ -62,7 +63,7 @@ class _AddArticleState extends State<AddArticle> {
                         (String value) {
                           return DropdownMenuItem<String>(
                             value: value,
-                            child: Text(value),
+                            child: new Text(value),
                           );
                         },
                       ).toList(),
@@ -90,11 +91,61 @@ class _AddArticleState extends State<AddArticle> {
                   controller: _descController,
                   onSubmitted: null,
                 ),
+                ElevatedButton(
+                  onPressed: () {
+                    _addItem(
+                        _titleController.text,
+                        _ageController.text,
+                        dropdownValue,
+                        _priceController.text,
+                        _descController.text);
+                  },
+                  child: Text("Ajouter"),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Future _addItem(
+      String title, String age, String state, String price, String desc) async {
+    final data = {
+      "title": title,
+      "age": int.parse(age),
+      "description": desc,
+      "state": state,
+      "price": int.parse(price),
+      "user_id": 1,
+      "type_id": 21
+    };
+    final url = Uri.parse('http://10.0.2.2:8000/item/');
+    try {
+      final response = await http.post(
+        url,
+        headers: {"Content-Type": "application/json"},
+        body: json.encode(
+          {
+            "title": title,
+            "description": desc,
+            "state": state,
+            "price": int.parse(price),
+            "age": int.parse(age),
+            "user_id": 1,
+            "type_id": 21
+          },
+        ),
+      );
+      if (response.statusCode == 201) {
+        print(response.body);
+        return json.decode(response.body);
+      } else {
+        print(response.body);
+      }
+    } catch (e) {
+      return print(e);
+    }
   }
 }

@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:soundeal/main.dart';
-import 'package:soundeal/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
+import 'package:soundeal/widgets/categories/categories_screen.dart';
 import '../appbar.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -88,6 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text('Connexion'),
               onPressed: () {
                 _loginPressed(_emailFilter.text, _passwordFilter.text);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CategoriesScreen(),
+                    ),
+                    (route) => false);
               },
             ),
             TextButton(
@@ -136,8 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
     var token = convertedDataToJson['access_token'];
     await UserSecureStorage.setJWT(token);
-    var result = await UserSecureStorage.getJWT();
-    print(result);
+    UserSecureStorage.isConnected = true;
     return convertedDataToJson;
   }
 

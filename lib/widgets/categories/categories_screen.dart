@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soundeal/widgets/articles/articles_add.dart';
 import 'package:soundeal/widgets/authentication/login_screen.dart';
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 import 'package:soundeal/widgets/bottom_navigation.dart';
 import '../appbar.dart';
 import '../categories/category_item.dart';
@@ -13,6 +14,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  bool connected = false;
   int _selectedIndex = 0;
   bool isConnected = false;
   void _onItemTapped(int index) {
@@ -21,6 +23,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     }
     setState(() {
       _selectedIndex = index;
+      connected = UserSecureStorage.isConnected;
     });
 
     switch (index) {
@@ -33,11 +36,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             (route) => false);
         break;
       case 1:
-        if (!isConnected) {
+        if (!connected) {
           Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(
                 builder: (context) => LoginScreen(),
+              ),
+              (route) => false);
+        } else {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AccountScreen(),
               ),
               (route) => false);
         }
