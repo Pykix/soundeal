@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 
 class OfferList extends StatelessWidget {
-  final List<Articles> articles;
+  AsyncSnapshot<dynamic> articles;
   final Function deleteArticle;
   OfferList(
     this.articles,
@@ -11,7 +11,9 @@ class OfferList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      itemCount: articles.data.length,
       itemBuilder: (context, index) {
+        var article = articles.data[index];
         return Card(
           elevation: 3,
           margin: EdgeInsets.symmetric(
@@ -31,20 +33,20 @@ class OfferList extends StatelessWidget {
               ),
             ),
             title: Text(
-              articles[index].title,
+              article.title,
             ),
-            subtitle: Text("${articles[index].price.toString()}€"),
+            subtitle: Text("${article.price.toString()}€"),
             trailing: IconButton(
               icon: Icon(Icons.delete),
               color: Theme.of(context).errorColor,
               onPressed: () {
-                deleteArticle(articles[index].id);
+                print(article.id);
+                deleteArticle(article.id);
               },
             ),
           ),
         );
       },
-      itemCount: articles.length,
     );
   }
 }
