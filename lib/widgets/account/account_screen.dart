@@ -9,6 +9,7 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  bool connected = UserSecureStorage.isConnected;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     if (_selectedIndex != index) {
@@ -16,6 +17,7 @@ class _AccountScreenState extends State<AccountScreen> {
     }
     setState(() {
       _selectedIndex = index;
+      connected = UserSecureStorage.isConnected;
     });
 
     switch (index) {
@@ -66,11 +68,18 @@ class _AccountScreenState extends State<AccountScreen> {
             onTap: () {},
           ),
           ListTile(
-            title: Text("Supprimer mon compte"),
+            title: Text("Deconnexion"),
             trailing: Icon(Icons.chevron_right),
             onTap: () {
-              if (UserSecureStorage.isConnected) {
+              if (connected) {
                 UserSecureStorage.isConnected = false;
+                print(UserSecureStorage.isConnected);
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CategoriesScreen(),
+                    ),
+                    (route) => false);
               }
             },
           ),

@@ -99,6 +99,7 @@ class _AddArticleState extends State<AddArticle> {
                         dropdownValue,
                         _priceController.text,
                         _descController.text);
+                    Navigator.pop(context);
                   },
                   child: Text("Ajouter"),
                 ),
