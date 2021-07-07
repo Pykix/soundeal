@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:soundeal/widgets/account/account_screen.dart';
 import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
+import 'package:soundeal/widgets/bottom_navigation.dart';
 import 'package:soundeal/widgets/categories/categories_screen.dart';
 import '../appbar.dart';
 
@@ -20,6 +22,47 @@ class _LoginScreenState extends State<LoginScreen> {
   String _email = "";
   String _password = "";
   FormType _form = FormType.login;
+  bool connected = false;
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    print(index);
+    if (_selectedIndex != index) {
+      return;
+    }
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CategoriesScreen(),
+            ),
+            (route) => false);
+        break;
+      case 1:
+        if (!connected) {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginScreen(),
+              ),
+              (route) => false);
+        } else {
+          Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AccountScreen(),
+              ),
+              (route) => false);
+        }
+
+        break;
+    }
+  }
 
   void _formChange() async {
     setState(() {
@@ -44,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
+      bottomNavigationBar: bottomBar(context, _onItemTapped),
     );
   }
 
@@ -87,12 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Text('Connexion'),
               onPressed: () {
                 _loginPressed(_emailFilter.text, _passwordFilter.text);
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CategoriesScreen(),
-                    ),
-                    (route) => false);
               },
             ),
             TextButton(
@@ -131,6 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future _loginPressed(String email, String password) async {
     final url = Uri.parse('http://10.0.2.2:8000/login');
+
     final response = await http.post(
       url,
       headers: {
@@ -138,11 +177,25 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       body: {"username": _emailFilter.text, "password": _passwordFilter.text},
     );
-    Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
-    var token = convertedDataToJson['access_token'];
-    await UserSecureStorage.setJWT(token);
-    UserSecureStorage.isConnected = true;
-    return convertedDataToJson;
+    if (response.statusCode == 200) {
+      Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
+      var token = convertedDataToJson['access_token'];
+      await UserSecureStorage.setJWT(token);
+      UserSecureStorage.isConnected = true;
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoriesScreen(),
+          ),
+          (route) => false);
+    }
+    if (response.statusCode == 404) {
+      _emailFilter.text = "";
+      _passwordFilter.text = "";
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Identifiants invalides"),
+      ));
+    }
   }
 
   Future _createPressed(String email, String password, String username) async {
@@ -165,6 +218,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _passwordReset() {
-    print("The user wants a password reset request sent to $_email");
+    print("Reset du passowrd avec cet email: $_email");
   }
 }

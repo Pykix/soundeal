@@ -58,11 +58,6 @@ class _AccountScreenState extends State<AccountScreen> {
             },
           ),
           ListTile(
-            title: Text("Mes Messages"),
-            trailing: Icon(Icons.chevron_right),
-            onTap: () {},
-          ),
-          ListTile(
             title: Text("Mes Infos"),
             trailing: Icon(Icons.chevron_right),
             onTap: () {},
@@ -74,6 +69,11 @@ class _AccountScreenState extends State<AccountScreen> {
               if (connected) {
                 UserSecureStorage.isConnected = false;
                 print(UserSecureStorage.isConnected);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text('Vous etes deconnecté'),
+                  ),
+                );
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
