@@ -19,7 +19,8 @@ class _AddArticleState extends State<AddArticle> {
 
   final _descController = TextEditingController();
 
-  String dropdownValue = "Bon";
+  String _stateValue = "Bon";
+  String _typeValue = "Flute";
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class _AddArticleState extends State<AddArticle> {
                       width: 30,
                     ),
                     DropdownButton(
-                      value: dropdownValue,
+                      value: _stateValue,
                       items: <String>[
                         "Neuf",
                         "Tres Bon",
@@ -69,16 +70,46 @@ class _AddArticleState extends State<AddArticle> {
                       ).toList(),
                       onChanged: (String newValue) {
                         setState(() {
-                          dropdownValue = newValue;
+                          _stateValue = newValue;
                         });
                       },
                     ),
                   ],
                 ),
-                TextField(
-                  decoration: InputDecoration(labelText: 'Type'),
-                  controller: _typeController,
-                  onSubmitted: null,
+                Row(
+                  children: [
+                    Text("Type"),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    DropdownButton(
+                      value: _typeValue,
+                      items: <String>[
+                        "Flute",
+                        "Violon",
+                        "Trompette",
+                        "Guitare",
+                        "Batterie",
+                        "Piano",
+                        "Micro",
+                        "Platine",
+                        "Electrique",
+                        "Saxo",
+                      ].map<DropdownMenuItem<String>>(
+                        (String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: new Text(value),
+                          );
+                        },
+                      ).toList(),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          _typeValue = newValue;
+                        });
+                      },
+                    ),
+                  ],
                 ),
                 TextField(
                   decoration: InputDecoration(labelText: 'Prix'),
@@ -96,7 +127,7 @@ class _AddArticleState extends State<AddArticle> {
                     _addItem(
                         _titleController.text,
                         _ageController.text,
-                        dropdownValue,
+                        _stateValue,
                         _priceController.text,
                         _descController.text);
                     Navigator.pop(context);

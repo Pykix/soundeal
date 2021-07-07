@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:soundeal/models/articles.dart';
 import 'package:http/http.dart' as http;
-import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 
 List<Articles> articlesModelFromJson(String str) =>
     List<Articles>.from(json.decode(str).map((x) => Articles.fromJson(x)));
 
-Future<List<Articles>> fetchArticles() async {
+Future<List<Articles>> fetchArticles(int id) async {
   var response =
-      await http.get(Uri.parse('http://10.0.2.2:8000/item/category/21'));
+      await http.get(Uri.parse('http://10.0.2.2:8000/item/category/$id'));
 
   if (response.statusCode == 200) {
     return articlesModelFromJson(response.body);
@@ -20,6 +19,8 @@ Future<List<Articles>> fetchArticles() async {
 }
 
 class ArticlesList extends StatefulWidget {
+  final int id;
+  ArticlesList(this.id);
   @override
   _ArticlesListState createState() => _ArticlesListState();
 }
@@ -33,7 +34,7 @@ class _ArticlesListState extends State<ArticlesList> {
   @override
   void initState() {
     super.initState();
-    articlesObject = fetchArticles();
+    articlesObject = fetchArticles(widget.id);
   }
 
   @override
@@ -70,29 +71,35 @@ class _ArticlesListState extends State<ArticlesList> {
                         ),
                       );
                     },
-                    child: Card(
-                      elevation: 3,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: 3,
-                        vertical: 8,
-                      ),
-                      child: ListTile(
-                        leading: ClipRRect(
-                          child: Image.network(
-                            'https://cdn.pixabay.com/photo/2021/06/17/05/14/city-6342765_960_720.jpg',
-                            fit: BoxFit.cover,
-                            width: 100.0,
-                            height: 100.0,
-                          ),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(15),
-                          ),
+                    child: Container(
+                      height: 100,
+                      child: Card(
+                        elevation: 3,
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 3,
+                          vertical: 8,
                         ),
-                        title: Text(
-                          article.title,
+                        child: ListTile(
+                          leading: ClipRRect(
+                            child: Image.network(
+                              'https://cdn.pixabay.com/photo/2021/06/17/05/14/city-6342765_960_720.jpg',
+                              fit: BoxFit.cover,
+                              width: 100.0,
+                              height: 100.0,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15),
+                            ),
+                          ),
+                          title: Text(
+                            article.title,
+                          ),
+                          subtitle: Text(
+                            article.description,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          trailing: Text("${article.price.toString()}€"),
                         ),
-                        subtitle: Text(article.description),
-                        trailing: Text("${article.price.toString()}€"),
                       ),
                     ),
                   );

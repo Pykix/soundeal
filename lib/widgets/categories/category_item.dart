@@ -3,19 +3,16 @@ import 'package:flutter/material.dart';
 class CategoryItem extends StatelessWidget {
   final int id;
   final String title;
-  final Image picture;
 
   CategoryItem(
     this.id,
     this.title,
-    this.picture,
   );
 
   void selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed('/articles', arguments: {
       'id': id,
       'title': title,
-      'picture': picture,
     });
   }
 
@@ -36,7 +33,8 @@ class CategoryItem extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: picture.image,
+            image: NetworkImage(
+                'https://cdn.pixabay.com/photo/2014/10/25/19/24/rape-blossom-502973_960_720.jpg'),
           ),
           borderRadius: BorderRadius.circular(15),
         ),

@@ -7,11 +7,12 @@ class ArticlesScreen extends StatelessWidget {
     final routeArgs =
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
     final titleArg = routeArgs['title'];
+    final idArgs = routeArgs['id'];
     return Scaffold(
       appBar: AppBar(
         title: Text(titleArg),
       ),
-      body: ArticlesList(),
+      body: ArticlesList(idArgs),
     );
   }
 }

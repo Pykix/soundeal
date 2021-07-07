@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:soundeal/models/category.dart';
 import 'package:soundeal/widgets/articles/articles_add.dart';
 import 'package:soundeal/widgets/authentication/login_screen.dart';
 import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 import 'package:soundeal/widgets/bottom_navigation.dart';
 import '../appbar.dart';
+import 'package:http/http.dart' as http;
 import '../categories/category_item.dart';
-import '../../fake_categories.dart';
+
 import '../account/account_screen.dart';
 
 class CategoriesScreen extends StatefulWidget {
@@ -14,6 +18,7 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  Future categories;
   bool connected = false;
   int _selectedIndex = 0;
   bool isConnected = false;
@@ -71,22 +76,40 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    categories = fetchCategories();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appbar(context),
-      body: GridView(
-        padding: EdgeInsets.all(10),
-        children: fakeCategories
-            .map(
-              (e) => CategoryItem(e.id, e.type, e.picture),
-            )
-            .toList(),
-        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200,
-          // childAspectRatio: 3 / 2,
-          mainAxisSpacing: 5.0,
-          crossAxisSpacing: 5.0,
-        ),
+      body: FutureBuilder<List<Category>>(
+        future: categories,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return GridView.builder(
+                padding: EdgeInsets.all(10),
+                itemCount: snapshot.data.length,
+                gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  // childAspectRatio: 3 / 2,
+                  mainAxisSpacing: 5.0,
+                  crossAxisSpacing: 5.0,
+                ),
+                itemBuilder: (context, index) {
+                  return CategoryItem(
+                    snapshot.data[index].id,
+                    snapshot.data[index].type,
+                  );
+                });
+          } else if (snapshot.hasError) {
+            return Text('Error : ${snapshot.error}');
+          }
+
+          return CircularProgressIndicator();
+        },
       ),
       bottomNavigationBar: bottomBar(context, _onItemTapped),
       floatingActionButton: FloatingActionButton(
@@ -96,5 +119,19 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
     );
+  }
+
+  List<Category> categoriesModelFromJson(String str) =>
+      List<Category>.from(json.decode(str).map((x) => Category.fromJson(x)));
+
+  Future<List<Category>> fetchCategories() async {
+    var response =
+        await http.get(Uri.parse('http://10.0.2.2:8000/item/category'));
+
+    if (response.statusCode == 200) {
+      return categoriesModelFromJson(response.body);
+    } else {
+      throw Exception('Failed to load categories');
+    }
   }
 }
