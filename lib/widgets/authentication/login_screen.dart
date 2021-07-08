@@ -181,12 +181,14 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
       var token = convertedDataToJson['access_token'];
-      var userId = convertedDataToJson['id'];
-      print(convertedDataToJson);
+      var userId = convertedDataToJson['user_id'];
       await UserSecureStorage.setJWT(token);
       UserSecureStorage.isConnected = true;
       UserSecureStorage.userId = userId;
       print(UserSecureStorage.userId);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Vous etes connecté"),
+      ));
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
