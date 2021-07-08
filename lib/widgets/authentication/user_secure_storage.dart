@@ -13,4 +13,6 @@ class UserSecureStorage {
   static Future deleteJWT() async => await _storage.delete(key: _keyToken);
 
   static bool isConnected = false;
+
+  static int userId;
 }

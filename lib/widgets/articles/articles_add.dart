@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 
 class AddArticle extends StatefulWidget {
   @override
@@ -144,34 +145,37 @@ class _AddArticleState extends State<AddArticle> {
 
   Future _addItem(
       String title, String age, String state, String price, String desc) async {
-    final data = {
-      "title": title,
-      "age": int.parse(age),
-      "description": desc,
-      "state": state,
-      "price": int.parse(price),
-      "user_id": 1,
-      "type_id": 21
-    };
+    int userId = UserSecureStorage.userId;
+    Future token = UserSecureStorage.getJWT();
+
     final url = Uri.parse('http://10.0.2.2:8000/item/');
     try {
+      print("bonjour");
+      if (title.isEmpty || price.isEmpty) {
+        return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Veuillez completer le titre et le prix"),
+        ));
+      }
+
       final response = await http.post(
         url,
-        headers: {"Content-Type": "application/json"},
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${await token}"
+        },
         body: json.encode(
           {
             "title": title,
-            "description": desc,
-            "state": state,
+            "description": desc.isNotEmpty ? desc : "",
+            "state": state.isNotEmpty ? state.toLowerCase() : "",
             "price": int.parse(price),
-            "age": int.parse(age),
-            "user_id": 1,
-            "type_id": 21
+            "age": age.isNotEmpty ? int.parse(age) : 0,
+            "user_id": userId,
+            "type": _typeValue.toLowerCase()
           },
         ),
       );
       if (response.statusCode == 201) {
-        print(response.body);
         return json.decode(response.body);
       } else {
         print(response.body);
