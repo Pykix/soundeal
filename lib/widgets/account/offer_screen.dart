@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import "package:flutter/material.dart";
 import 'package:soundeal/models/articles.dart';
+import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
 import 'offer_list.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,13 +10,14 @@ List<Articles> articlesModelFromJson(String str) =>
     List<Articles>.from(json.decode(str).map((x) => Articles.fromJson(x)));
 
 Future<List<Articles>> fetchArticles() async {
+  var userId = UserSecureStorage.userId;
   var response =
-      await http.get(Uri.parse('http://10.0.2.2:8000/item/my-item/1'));
+      await http.get(Uri.parse('http://10.0.2.2:8000/item/my-item/$userId'));
 
   if (response.statusCode == 200) {
     return articlesModelFromJson(response.body);
   } else {
-    throw Exception('Failed to load articles');
+    throw Exception('Vous n\'avez pas poster d\'annonces!');
   }
 }
 

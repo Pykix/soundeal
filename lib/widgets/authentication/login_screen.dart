@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailFilter = TextEditingController();
   final TextEditingController _passwordFilter = TextEditingController();
   final TextEditingController _usernameFilter = TextEditingController();
+  final bool created = false;
   String _email = "";
   String _password = "";
   FormType _form = FormType.login;
@@ -180,8 +181,12 @@ class _LoginScreenState extends State<LoginScreen> {
     if (response.statusCode == 200) {
       Map<String, dynamic> convertedDataToJson = jsonDecode(response.body);
       var token = convertedDataToJson['access_token'];
+      var userId = convertedDataToJson['id'];
+      print(convertedDataToJson);
       await UserSecureStorage.setJWT(token);
       UserSecureStorage.isConnected = true;
+      UserSecureStorage.userId = userId;
+      print(UserSecureStorage.userId);
       Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
@@ -214,7 +219,15 @@ class _LoginScreenState extends State<LoginScreen> {
 
     var convertedDataToJson = jsonDecode(response.body);
     print(convertedDataToJson);
-    return convertedDataToJson;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text("Vous pouvez vous connecter avec vos identifiants"),
+    ));
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+        (route) => false);
   }
 
   void _passwordReset() {
