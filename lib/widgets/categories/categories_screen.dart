@@ -19,7 +19,7 @@ class CategoriesScreen extends StatefulWidget {
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
   Future categories;
-  bool connected = false;
+  bool connected;
   int _selectedIndex = 0;
   bool isConnected = false;
   void _onItemTapped(int index) {
@@ -79,6 +79,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   void initState() {
     super.initState();
     categories = fetchCategories();
+    connected = UserSecureStorage.isConnected;
   }
 
   @override
@@ -112,10 +113,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         },
       ),
       bottomNavigationBar: bottomBar(context, _onItemTapped),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startAddNewOffer(context),
-      ),
+      floatingActionButton: connected
+          ? FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => _startAddNewOffer(context),
+            )
+          : Container(),
       floatingActionButtonLocation:
           FloatingActionButtonLocation.miniCenterDocked,
     );

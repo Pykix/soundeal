@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/extension/capitalize_extension.dart';
 
 class CategoryItem extends StatelessWidget {
   final int id;
@@ -26,7 +27,7 @@ class CategoryItem extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Text(
-            title,
+            title.capitalize(),
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
