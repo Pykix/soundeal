@@ -15,22 +15,26 @@ Future<List<Articles>> fetchArticles() async {
       await http.get(Uri.parse('http://10.0.2.2:8000/item/my-item/$userId'));
 
   if (response.statusCode == 200) {
+    print(response.body);
     return articlesModelFromJson(response.body);
   } else {
-    throw Exception('Vous n\'avez pas poster d\'annonces!');
+    throw Exception('Vous n\'avez pas posté d\'annonces!');
   }
 }
 
+Future sleep1() {
+  return new Future.delayed(const Duration(seconds: 2), () => "2");
+}
+
 Future<List<Articles>> deleteArticles(int id) async {
+  Future token = UserSecureStorage.getJWT();
   var response = await http.delete(
     Uri.parse('http://10.0.2.2:8000/item/$id'),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${await token}"
+    },
   );
-
-  if (response.statusCode == 200) {
-    return articlesModelFromJson(response.body);
-  } else {
-    throw Exception('Failed to load articles');
-  }
 }
 
 class OfferScreen extends StatefulWidget {
