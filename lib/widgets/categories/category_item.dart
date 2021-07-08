@@ -4,16 +4,19 @@ import '/extension/capitalize_extension.dart';
 class CategoryItem extends StatelessWidget {
   final int id;
   final String title;
+  final String picture;
 
   CategoryItem(
     this.id,
     this.title,
+    this.picture,
   );
 
   void selectCategory(BuildContext context) {
     Navigator.of(context).pushNamed('/articles', arguments: {
       'id': id,
       'title': title,
+      'picture': picture,
     });
   }
 
@@ -34,8 +37,7 @@ class CategoryItem extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: NetworkImage(
-                'https://cdn.pixabay.com/photo/2014/10/25/19/24/rape-blossom-502973_960_720.jpg'),
+            image: NetworkImage("http://10.0.2.2:8000/" + picture),
           ),
           borderRadius: BorderRadius.circular(15),
         ),

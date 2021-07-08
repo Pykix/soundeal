@@ -103,6 +103,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   return CategoryItem(
                     snapshot.data[index].id,
                     snapshot.data[index].type,
+                    snapshot.data[index].picture,
                   );
                 });
           } else if (snapshot.hasError) {
