@@ -86,12 +86,6 @@ class _AccountScreenState extends State<AccountScreen> {
         ],
       )),
       bottomNavigationBar: bottomBar(context, _onItemTapped),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation:
-          FloatingActionButtonLocation.miniCenterDocked,
     );
   }
 }
