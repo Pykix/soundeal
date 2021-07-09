@@ -1,15 +1,19 @@
 # soundeal
+==========
 
-TP Appli mobile 
+TP Appli mobile  
 
 ## Login
-username : moune@moune.fr
+========
+username : moune@moune.fr  
 password : moune
 
 
 ## Database
+============
 ![](modelisation.png)
 ## Features
+============
 
 - Add an offer (picture upload doesn't work at this moment, backend issue)
 - Send sms email or phone with phone function to the owner
@@ -21,14 +25,15 @@ password : moune
 
 
 ## Screenshots
- not connected
- =============
+==============
+not connected  
+--------------
 
 ![](screenshots/Screenshot1noConnected.png)
 ![](screenshots/Screenshot6.png)
 
-connected
-=========
+connected  
+----------
 ![](screenshots/Screenshot1.png)
 ![](screenshots/Screenshot2.png)
 ![](screenshots/Screenshot3.png)
