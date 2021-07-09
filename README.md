@@ -21,19 +21,19 @@ password : moune
 - Delete offer
 - Detail of the offer
 - Picture from detail is from internet (backend upload issue)
-- backend documentation is avaible when backend is running at [localhost](http://localhost:8000/docs)
+- backend documentation is avaible when backend is running at [localhost:8000/docs](http://localhost:8000/docs)
 
 
 ## Screenshots
 
-not connected  
---------------
+### not connected  
+
 
 ![](screenshots/Screenshot1noConnected.png)
 ![](screenshots/Screenshot6.png)
 
-connected  
-----------
+### connected  
+
 ![](screenshots/Screenshot1.png)
 ![](screenshots/Screenshot2.png)
 ![](screenshots/Screenshot3.png)
