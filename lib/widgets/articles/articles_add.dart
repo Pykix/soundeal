@@ -3,6 +3,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:soundeal/widgets/authentication/user_secure_storage.dart';
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
+import 'package:http_parser/http_parser.dart';
 
 class AddArticle extends StatefulWidget {
   @override
@@ -11,17 +14,16 @@ class AddArticle extends StatefulWidget {
 
 class _AddArticleState extends State<AddArticle> {
   final _titleController = TextEditingController();
-
   final _ageController = TextEditingController();
-
-  final _typeController = TextEditingController();
-
   final _priceController = TextEditingController();
-
   final _descController = TextEditingController();
 
   String _stateValue = "Bon";
   String _typeValue = "Flute";
+
+  final Uri endPoint = Uri.parse("http://10.0.2.2:8000/item/picture/");
+  final _picker = ImagePicker();
+  PickedFile file;
 
   @override
   Widget build(BuildContext context) {
@@ -119,10 +121,28 @@ class _AddArticleState extends State<AddArticle> {
                   onSubmitted: null,
                 ),
                 TextField(
-                  decoration: InputDecoration(labelText: 'Descrption'),
+                  decoration: InputDecoration(labelText: 'Description'),
                   controller: _descController,
                   onSubmitted: null,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    ElevatedButton(
+                      onPressed: _choose,
+                      child: Text('Ajouter une image'),
+                    ),
+                    SizedBox(width: 10.0),
+
+                    // RaisedButton(
+                    //   onPressed: _upload,
+                    //   child: Text('Upload Image'),
+                    // )
+                  ],
+                ),
+                file == null
+                    ? Text('No Image Selected')
+                    : Image.file(File(file.path)),
                 ElevatedButton(
                   onPressed: () {
                     _addItem(
@@ -133,7 +153,7 @@ class _AddArticleState extends State<AddArticle> {
                         _descController.text);
                     Navigator.pop(context);
                   },
-                  child: Text("Ajouter"),
+                  child: Text("Publier"),
                 ),
               ],
             ),
@@ -142,6 +162,23 @@ class _AddArticleState extends State<AddArticle> {
       ),
     );
   }
+
+  void _choose() async {
+    file = await _picker.getImage(source: ImageSource.gallery);
+  }
+
+  // void _upload() async {
+  //   if (file == null) return;
+
+  //   var request = http.MultipartRequest("POST", endPoint);
+  //   var pic = await http.MultipartFile.fromPath("uploaded_file", file.path);
+
+  //   request.files.add(pic);
+  //   var response = await request.send();
+  //   var responseData = await response.stream.toBytes();
+  //   var responseString = String.fromCharCodes(responseData);
+  //   print(responseString);
+  // }
 
   Future _addItem(
       String title, String age, String state, String price, String desc) async {

@@ -1,16 +1,35 @@
 # soundeal
 
-A new Flutter project.
+TP Appli mobile 
 
-## Getting Started
+## Login
+username : moune@moune.fr
+password : moune
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Database
+![](modelisation.png)
+## Features
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Add an offer (picture upload doesn't work at this moment, backend issue)
+- Send sms email or phone with phone function to the owner
+- Lazy loading for categories screen
+- Delete offer
+- Detail of the offer
+- Picture from detail is from internet (backend upload issue)
+- backend documentation is avaible when backend is running at ![localhost] (http://localhost:8000/docs)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Screenshots
+
+![](screenshots/Screenshot1.png)
+![](screenshots/Screenshot1noConnected.png)
+![](screenshots/Screenshot2.png)
+![](screenshots/Screenshot3.png)
+![](screenshots/Screenshot4.png)
+![](screenshots/Screenshot5.png)
+![](screenshots/Screenshot6.png)
+
+
+
+

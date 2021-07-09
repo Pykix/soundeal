@@ -109,8 +109,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           } else if (snapshot.hasError) {
             return Text('Error : ${snapshot.error}');
           }
-
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
       bottomNavigationBar: bottomBar(context, _onItemTapped),

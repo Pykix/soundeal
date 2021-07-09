@@ -58,11 +58,6 @@ class _AccountScreenState extends State<AccountScreen> {
             },
           ),
           ListTile(
-            title: Text("Mes Infos"),
-            trailing: Icon(Icons.chevron_right),
-            onTap: () {},
-          ),
-          ListTile(
             title: Text("Deconnexion"),
             trailing: Icon(Icons.chevron_right),
             onTap: () {

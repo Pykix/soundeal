@@ -9,6 +9,7 @@ import 'widgets/categories/categories_screen.dart';
 
 final storage = FlutterSecureStorage();
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
