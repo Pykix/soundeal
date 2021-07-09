@@ -21,7 +21,7 @@ password : moune
 - Delete offer
 - Detail of the offer
 - Picture from detail is from internet (backend upload issue)
-- backend documentation is avaible when backend is running at ![localhost] (http://localhost:8000/docs)
+- backend documentation is avaible when backend is running at [localhost](http://localhost:8000/docs)
 
 
 ## Screenshots
