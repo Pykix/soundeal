@@ -21,14 +21,15 @@ password : moune
 
 
 ## Screenshots
-
-![](screenshots/Screenshot1.png)
+- not connected
 ![](screenshots/Screenshot1noConnected.png)
+![](screenshots/Screenshot6.png)
+- connected
+![](screenshots/Screenshot1.png)
 ![](screenshots/Screenshot2.png)
 ![](screenshots/Screenshot3.png)
 ![](screenshots/Screenshot4.png)
 ![](screenshots/Screenshot5.png)
-![](screenshots/Screenshot6.png)
 
 
 
